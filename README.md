@@ -4,7 +4,7 @@
 **NOTE:** The script needs to be run with **root** privileges - since most information in **/proc** requires root permissions for a given **PID**.
 
 ## Example output:
-
+![pinfo](https://github.com/user-attachments/assets/e1546de9-39ea-4f57-aad3-71de68906bb6)
 
 ## Usage
 ```
