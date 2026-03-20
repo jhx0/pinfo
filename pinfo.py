@@ -81,7 +81,7 @@ def get_cpu_model():
         if "model name" in line:
             return line.split(":")[1].strip()
 
-def get_utpime():
+def get_uptime():
     f = open("/proc/uptime")
     output = f.read().split(" ")[0]
     days = float(output) / 60 / 60 / 24
@@ -124,7 +124,7 @@ def usage():
 def check_pid(pid):
     try:
         pid = int(pid)
-    except:
+    except ValueError:
         die("Not a PID number, exiting!")
 
     if not psutil.pid_exists(pid):
@@ -148,7 +148,7 @@ if __name__ == "__main__":
     print("{:25s} {:25s}".format("Loadavg:", get_loadavg()))
     print("{:25s} {:25s}".format("Total Memory (MB):", str(get_total_ram())))
     print("{:25s} {:25s}".format("Swap used (%):", str(get_swap_used())))
-    print("{:25s} {:25s}".format("Utpime:", get_utpime()))
+    print("{:25s} {:25s}".format("Uptime:", get_uptime()))
     print("{:25s} {:25s}".format("Kernel:", get_kernel()))
     print("{:25s} {:25s}".format("/ Usage (%):", str(get_root_usage())))
     
