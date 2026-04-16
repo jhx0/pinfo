@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import sys
-import re
 import os
 import psutil
 from colorama import Fore, Style
@@ -62,7 +61,7 @@ def get_stat(pid):
 
     return stat
 
-def get_env():
+def get_env(pid):
     f = open("/proc/{}/environ".format(pid))
     output = f.read().replace("\0", "\n").rstrip()
     if len(output) < 1:
@@ -128,7 +127,7 @@ def check_pid(pid):
         die("Not a PID number, exiting!")
 
     if not psutil.pid_exists(pid):
-        die("ERORR: PID does not exist, exiting!")
+        die("PID does not exist, exiting!")
 
 if __name__ == "__main__":
     if not is_root():
@@ -166,4 +165,4 @@ if __name__ == "__main__":
     print("{:25s} {:25s}".format("RSS:", stat_list[23]))
     
     print("\n{}Environment Listing for PID {}{}".format(Style.BRIGHT + Fore.RED, str(pid), Style.RESET_ALL + Fore.RESET))
-    print(get_env())
+    print(get_env(pid))
